@@ -1,0 +1,37 @@
+[✔️] graphicoder> db.abcdBank.insertMany([
+... {name: "Ram", prevBalance: 1000, currBalance: 500},
+... {name: "Shyam", prevBalance: 800, currBalance: 900}
+... ]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("64d487ab5c69d68dafe65a5b"),
+    '1': ObjectId("64d487ab5c69d68dafe65a5c")
+  }
+}
+[✔️] graphicoder> db.abcdBank.find().pretty();
+[
+  {
+    _id: ObjectId("64d487ab5c69d68dafe65a5b"),
+    name: 'Ram',
+    prevBalance: 1000,
+    currBalance: 500
+  },
+  {
+    _id: ObjectId("64d487ab5c69d68dafe65a5c"),
+    name: 'Shyam',
+    prevBalance: 800,
+    currBalance: 900
+  }
+]
+[📝] it will find all the employee whose prevBalance is greater than the currBalance.. in the gt operator greater value is written first.
+[✔️] graphicoder> db.abcdBank.find({$expr: {$gt: ["$prevBalance", "$currBalance"]}});
+[
+  {
+    _id: ObjectId("64d487ab5c69d68dafe65a5b"),
+    name: 'Ram',
+    prevBalance: 1000,
+    currBalance: 500
+  }
+]
+graphicoder>

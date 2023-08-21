@@ -1,0 +1,90 @@
+[✔️] graphicoder> db.regexDemo.insertMany([
+... {data: "Good Morning\nGraphicoder"},
+... {data: "Good Morning        Everyone"},
+... {data: "GoodMorning"},
+... {data: "good morning"},
+... {data: "Good Morning"}
+... ]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("64d490865c69d68dafe65a64"),
+    '1': ObjectId("64d490865c69d68dafe65a65"),
+    '2': ObjectId("64d490865c69d68dafe65a66"),
+    '3': ObjectId("64d490865c69d68dafe65a67"),
+    '4': ObjectId("64d490865c69d68dafe65a68")
+  }
+}
+[✔️] graphicoder> db.regexDemo.find().pretty();
+[
+  {
+    _id: ObjectId("64d490865c69d68dafe65a64"),
+    data: 'Good Morning\nGraphicoder'
+  },
+  {
+    _id: ObjectId("64d490865c69d68dafe65a65"),
+    data: 'Good Morning        Everyone'
+  },
+  { _id: ObjectId("64d490865c69d68dafe65a66"), data: 'GoodMorning' },
+  { _id: ObjectId("64d490865c69d68dafe65a67"), data: 'good morning' },
+  { _id: ObjectId("64d490865c69d68dafe65a68"), data: 'Good Morning' }
+]
+[✔️] graphicoder> db.regexDemo.find({data: {$regex: /^GO/, $oeptions: 'i'}});
+MongoServerError: unknown operator: $oeptions
+[✔️] graphicoder> db.regexDemo.find({data: {$regex: /^GO/, $options: 'i'}});
+[
+  {
+    _id: ObjectId("64d490865c69d68dafe65a64"),
+    data: 'Good Morning\nGraphicoder'
+  },
+  {
+    _id: ObjectId("64d490865c69d68dafe65a65"),
+    data: 'Good Morning        Everyone'
+  },
+  { _id: ObjectId("64d490865c69d68dafe65a66"), data: 'GoodMorning' },
+  { _id: ObjectId("64d490865c69d68dafe65a67"), data: 'good morning' },
+  { _id: ObjectId("64d490865c69d68dafe65a68"), data: 'Good Morning' }
+]
+[✔️] graphicoder> db.regexDemo.find({data: {$regex: /^GO/}});
+
+[✔️] graphicoder> db.regexDemo.find({data: {$regex: /^Go/}});
+[
+  {
+    _id: ObjectId("64d490865c69d68dafe65a64"),
+    data: 'Good Morning\nGraphicoder'
+  },
+  {
+    _id: ObjectId("64d490865c69d68dafe65a65"),
+    data: 'Good Morning        Everyone'
+  },
+  { _id: ObjectId("64d490865c69d68dafe65a66"), data: 'GoodMorning' },
+  { _id: ObjectId("64d490865c69d68dafe65a68"), data: 'Good Morning' }
+]
+[✔️] graphicoder> db.regexDemo.find({data: {$regex: /^Go/, $options: 'm'}});
+[
+  {
+    _id: ObjectId("64d490865c69d68dafe65a64"),
+    data: 'Good Morning\nGraphicoder'
+  },
+  {
+    _id: ObjectId("64d490865c69d68dafe65a65"),
+    data: 'Good Morning        Everyone'
+  },
+  { _id: ObjectId("64d490865c69d68dafe65a66"), data: 'GoodMorning' },
+  { _id: ObjectId("64d490865c69d68dafe65a68"), data: 'Good Morning' }
+]
+[✔️] graphicoder> db.regexDemo.find({data: {$regex: /^Gr/, $options: 'm'}});
+[
+  {
+    _id: ObjectId("64d490865c69d68dafe65a64"),
+    data: 'Good Morning\nGraphicoder'
+  }
+]
+[✔️] graphicoder> db.regexDemo.find({data: {$regex: /g.*one/, $options: 'si'}});
+[
+  {
+    _id: ObjectId("64d490865c69d68dafe65a65"),
+    data: 'Good Morning        Everyone'
+  }
+]
+graphicoder>

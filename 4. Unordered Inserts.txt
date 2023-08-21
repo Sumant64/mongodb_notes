@@ -1,0 +1,115 @@
+--> Theory
+----------
+o when we insert the data with id  and the next time we insert the data with the same id then it will throw error.
+o To forcefull overwrite the data of the following ids we use ordered attribute.
+
+
+
+
+
+[➕] graphicoder> db.UnorderedExample.insertMany([{_id: 1, name: "A", age: 20 }, {_id: 2, name: "B", age: 20}]);
+{ acknowledged: true, insertedIds: { '0': 1, '1': 2 } }
+[➕] graphicoder> db.UnorderedExample.find().pretty()
+[ { _id: 1, name: 'A', age: 20 }, { _id: 2, name: 'B', age: 20 } ]
+[➕] graphicoder> db.UnorderedExample.insertMany([{_id: 1, name: "A", age: 20 }, {_id: 2, name: "B", age: 20}]);
+Uncaught:
+MongoBulkWriteError: E11000 duplicate key error collection: graphicoder.UnorderedExample index: _id_ dup key: { _id: 1 }Result: BulkWriteResult {
+  result: {
+    ok: 1,
+    writeErrors: [
+      WriteError {
+        err: {
+          index: 0,
+          code: 11000,
+          errmsg: 'E11000 duplicate key error collection: graphicoder.UnorderedExample index: _id_ dup key: { _id: 1 }',          errInfo: undefined,
+          op: { _id: 1, name: 'A', age: 20 }
+        }
+      }
+    ],
+    writeConcernErrors: [],
+    insertedIds: [ { index: 0, _id: 1 }, { index: 1, _id: 2 } ],
+    nInserted: 0,
+    nUpserted: 0,
+    nMatched: 0,
+    nModified: 0,
+    nRemoved: 0,
+    upserted: []
+  }
+}
+[➕] graphicoder> db.UnorderedExample.insertMany([{_id: 1, name: "A", age: 20 }, {_id: 2, name: "B", age: 20}, {_id: 3, name: "B", age:20}]);
+Uncaught:
+MongoBulkWriteError: E11000 duplicate key error collection: graphicoder.UnorderedExample index: _id_ dup key: { _id: 1 }
+Result: BulkWriteResult {
+  result: {
+    ok: 1,
+    writeErrors: [
+      WriteError {
+        err: {
+          index: 0,
+          code: 11000,
+          errmsg: 'E11000 duplicate key error collection: graphicoder.UnorderedExample index: _id_ dup key: { _id: 1 }',
+          errInfo: undefined,
+          op: { _id: 1, name: 'A', age: 20 }
+        }
+      }
+    ],
+    writeConcernErrors: [],
+    insertedIds: [
+      { index: 0, _id: 1 },
+      { index: 1, _id: 2 },
+      { index: 2, _id: 3 }
+    ],
+    nInserted: 0,
+    nUpserted: 0,
+    nMatched: 0,
+    nModified: 0,
+    nRemoved: 0,
+    upserted: []
+  }
+}
+[➕] graphicoder> db.UnorderedExample.insertMany([{_id: 1, name: "A", age: 20 }, {_id: 2, name: "B", age: 20}, {_id: 3, name: "B", age:20}], {ordered: false});
+Uncaught:
+MongoBulkWriteError: E11000 duplicate key error collection: graphicoder.UnorderedExample index: _id_ dup key: { _id: 1 }
+Result: BulkWriteResult {
+  result: {
+    ok: 1,
+    writeErrors: [
+      WriteError {
+        err: {
+          index: 0,
+          code: 11000,
+          errmsg: 'E11000 duplicate key error collection: graphicoder.UnorderedExample index: _id_ dup key: { _id: 1 }',
+          errInfo: undefined,
+          op: { _id: 1, name: 'A', age: 20 }
+        }
+      },
+      WriteError {
+        err: {
+          index: 1,
+          code: 11000,
+          errmsg: 'E11000 duplicate key error collection: graphicoder.UnorderedExample index: _id_ dup key: { _id: 2 }',
+          errInfo: undefined,
+          op: { _id: 2, name: 'B', age: 20 }
+        }
+      }
+    ],
+    writeConcernErrors: [],
+    insertedIds: [
+      { index: 0, _id: 1 },
+      { index: 1, _id: 2 },
+      { index: 2, _id: 3 }
+    ],
+    nInserted: 1,
+    nUpserted: 0,
+    nMatched: 0,
+    nModified: 0,
+    nRemoved: 0,
+    upserted: []
+  }
+}
+[➕] graphicoder> db.UnorderedExample.find().pretty()
+[
+  { _id: 1, name: 'A', age: 20 },
+  { _id: 2, name: 'B', age: 20 },
+  { _id: 3, name: 'B', age: 20 }
+]

@@ -1,0 +1,69 @@
+[➕] graphicoder> db.tShirtShop.insertMany([
+... {brand: "A", color: "black", price: 800},
+... {brand: "B", color: "yellow", price: 900},
+... {brand: "C", color: "while", price: 1000},
+... {brand: "A", color: "green", price: 700},
+... {brand: "B", color: "white", price: 1200}
+... ]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("64c79cfe150b3cd6e8713abb"),
+    '1': ObjectId("64c79cfe150b3cd6e8713abc"),
+    '2': ObjectId("64c79cfe150b3cd6e8713abd"),
+    '3': ObjectId("64c79cfe150b3cd6e8713abe"),
+    '4': ObjectId("64c79cfe150b3cd6e8713abf")
+  }
+}
+[➕] graphicoder> db.tShirtShop.find().pretty();
+[
+  {
+    _id: ObjectId("64c79cfe150b3cd6e8713abb"),
+    brand: 'A',
+    color: 'black',
+    price: 800
+  },
+  {
+    _id: ObjectId("64c79cfe150b3cd6e8713abc"),
+    brand: 'B',
+    color: 'yellow',
+    price: 900
+  },
+  {
+    _id: ObjectId("64c79cfe150b3cd6e8713abd"),
+    brand: 'C',
+    color: 'while',
+    price: 1000
+  },
+  {
+    _id: ObjectId("64c79cfe150b3cd6e8713abe"),
+    brand: 'A',
+    color: 'green',
+    price: 700
+  },
+  {
+    _id: ObjectId("64c79cfe150b3cd6e8713abf"),
+    brand: 'B',
+    color: 'white',
+    price: 1200
+  }
+]
+[➕] graphicoder> db.tShirtShop.find({color: "white"});
+[
+  {
+    _id: ObjectId("64c79cfe150b3cd6e8713abf"),
+    brand: 'B',
+    color: 'white',
+    price: 1200
+  }
+]
+[➕] graphicoder> db.tShirtShop.find({color: {$eq: "white"}});
+[
+  {
+    _id: ObjectId("64c79cfe150b3cd6e8713abf"),
+    brand: 'B',
+    color: 'white',
+    price: 1200
+  }
+]
+graphicoder>

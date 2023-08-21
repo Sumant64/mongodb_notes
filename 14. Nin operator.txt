@@ -1,0 +1,55 @@
+[➕] graphicoder> db.tShirtShop.find().pretty()
+[
+  {
+    _id: ObjectId("64c79cfe150b3cd6e8713abb"),
+    brand: 'A',
+    color: 'black',
+    price: 800
+  },
+  {
+    _id: ObjectId("64c79cfe150b3cd6e8713abc"),
+    brand: 'B',
+    color: 'yellow',
+    price: 900
+  },
+  {
+    _id: ObjectId("64c79cfe150b3cd6e8713abd"),
+    brand: 'C',
+    color: 'while',
+    price: 1000
+  },
+  {
+    _id: ObjectId("64c79cfe150b3cd6e8713abe"),
+    brand: 'A',
+    color: 'green',
+    price: 700
+  },
+  {
+    _id: ObjectId("64c79cfe150b3cd6e8713abf"),
+    brand: 'B',
+    color: 'white',
+    price: 1200
+  }
+]
+[➕] graphicoder> db.tShirtShop.find({color: {$nin: ["white", "black"]}});
+[
+  {
+    _id: ObjectId("64c79cfe150b3cd6e8713abc"),
+    brand: 'B',
+    color: 'yellow',
+    price: 900
+  },
+  {
+    _id: ObjectId("64c79cfe150b3cd6e8713abd"),
+    brand: 'C',
+    color: 'while',
+    price: 1000
+  },
+  {
+    _id: ObjectId("64c79cfe150b3cd6e8713abe"),
+    brand: 'A',
+    color: 'green',
+    price: 700
+  }
+]
+graphicoder>

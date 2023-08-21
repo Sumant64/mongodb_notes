@@ -1,0 +1,40 @@
+Note:📝
+o mod operator means modulus operator.
+o in this the first no. we pass is the divisor, from which we will divide our pens.
+o the second number is the remainder we will get.
+o in the below example we are dividing the pens by 3 and 0 should be the remainder.
+---------------------------------------------
+
+[✔️] graphicoder> db.Pens.insertMany([
+... {pens: 5},
+... {pens: 6},
+... {pens: 18},
+... {pens: 4},
+... {pens: 8}
+... ]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("64d48c945c69d68dafe65a5f"),
+    '1': ObjectId("64d48c945c69d68dafe65a60"),
+    '2': ObjectId("64d48c945c69d68dafe65a61"),
+    '3': ObjectId("64d48c945c69d68dafe65a62"),
+    '4': ObjectId("64d48c945c69d68dafe65a63")
+  }
+}
+[✔️] graphicoder> db.Pens.find.pretty();
+TypeError: db.Pens.find.pretty is not a function
+[✔️] graphicoder> db.Pens.find().pretty();
+[
+  { _id: ObjectId("64d48c945c69d68dafe65a5f"), pens: 5 },
+  { _id: ObjectId("64d48c945c69d68dafe65a60"), pens: 6 },
+  { _id: ObjectId("64d48c945c69d68dafe65a61"), pens: 18 },
+  { _id: ObjectId("64d48c945c69d68dafe65a62"), pens: 4 },
+  { _id: ObjectId("64d48c945c69d68dafe65a63"), pens: 8 }
+]
+[✔️] graphicoder> db.Pens.find({"pens": {$mod: [3,0]}});
+[
+  { _id: ObjectId("64d48c945c69d68dafe65a60"), pens: 6 },
+  { _id: ObjectId("64d48c945c69d68dafe65a61"), pens: 18 }
+]
+graphicoder>

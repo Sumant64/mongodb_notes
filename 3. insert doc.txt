@@ -1,0 +1,61 @@
+test> use graphicoder
+switched to db graphicoder
+graphicoder> show dbs
+admin               40.00 KiB
+config              60.00 KiB
+import              72.00 KiB
+local               80.00 KiB
+mern-pagination     52.00 KiB
+myBlog              40.00 KiB
+next-netflix        40.00 KiB
+olypics            180.22 MiB
+practiseRestApi    144.00 KiB
+production          26.95 MiB
+registrationLogin  144.00 KiB
+students-api       144.00 KiB
+task-manager       144.00 KiB
+ttchanell          108.00 KiB
+udemy               40.00 KiB
+[➕] graphicoder> db.playSchool.insertOne({"name": "Abhi", "Age": 4});
+------------------------------------------------------------------
+{
+  acknowledged: true,
+  insertedId: ObjectId("64c3b111076c941cbee95988")
+}
+graphicoder> db.playSchool.find().pretty()
+[ { _id: ObjectId("64c3b111076c941cbee95988"), name: 'Abhi', Age: 4 } ]
+graphicoder> db.playSchool.insertOne([{"name": "Gaurav", "Age": 3}, {"name": "Arjun", "Age": 7}]);
+{
+  acknowledged: true,
+  insertedId: ObjectId("64c3b175076c941cbee95989")
+}
+[➕] graphicoder> db.playSchool.find().pretty()
+-------------------------------------------
+[
+  { _id: ObjectId("64c3b111076c941cbee95988"), name: 'Abhi', Age: 4 },
+  {
+    '0': { name: 'Gaurav', Age: 3 },
+    '1': { name: 'Arjun', Age: 7 },
+    _id: ObjectId("64c3b175076c941cbee95989")
+  }
+]
+[➕] graphicoder> db.playSchool.insertMany([{"name": "Gaurav", "Age": 3}, {"name": "Arjun", "Age": 7}]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("64c3b198076c941cbee9598a"),
+    '1': ObjectId("64c3b198076c941cbee9598b")
+  }
+}
+[➕] graphicoder> db.playSchool.find().pretty()
+[
+  { _id: ObjectId("64c3b111076c941cbee95988"), name: 'Abhi', Age: 4 },
+  {
+    '0': { name: 'Gaurav', Age: 3 },
+    '1': { name: 'Arjun', Age: 7 },
+    _id: ObjectId("64c3b175076c941cbee95989")
+  },
+  { _id: ObjectId("64c3b198076c941cbee9598a"), name: 'Gaurav', Age: 3 },
+  { _id: ObjectId("64c3b198076c941cbee9598b"), name: 'Arjun', Age: 7 }
+]
+graphicoder>

@@ -1,0 +1,29 @@
+[➕] graphicoder> show collections
+playSchool
+UnorderedExample
+[➕] graphicoder> db.playSchool.findOne({"Age": 4})
+{ _id: ObjectId("64c3b111076c941cbee95988"), name: 'Abhi', Age: 4 }
+graphicoder> db.playSchool.find(
+... )
+[
+  { _id: ObjectId("64c3b111076c941cbee95988"), name: 'Abhi', Age: 4 },
+  {
+    '0': { name: 'Gaurav', Age: 3 },
+    '1': { name: 'Arjun', Age: 7 },
+    _id: ObjectId("64c3b175076c941cbee95989")
+  },
+  { _id: ObjectId("64c3b198076c941cbee9598a"), name: 'Gaurav', Age: 3 },
+  { _id: ObjectId("64c3b198076c941cbee9598b"), name: 'Arjun', Age: 7 }
+]
+[➕] graphicoder> db.playSchool.find().pretty()
+[
+  { _id: ObjectId("64c3b111076c941cbee95988"), name: 'Abhi', Age: 4 },
+  {
+    '0': { name: 'Gaurav', Age: 3 },
+    '1': { name: 'Arjun', Age: 7 },
+    _id: ObjectId("64c3b175076c941cbee95989")
+  },
+  { _id: ObjectId("64c3b198076c941cbee9598a"), name: 'Gaurav', Age: 3 },
+  { _id: ObjectId("64c3b198076c941cbee9598b"), name: 'Arjun', Age: 7 }
+]
+graphicoder>
