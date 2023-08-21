@@ -1,0 +1,81 @@
+[✔️] graphicoder> db.extrass.insertOne({name:"Ravi", lastUpdated: new Date()});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64e2f987287409b00fdcbb0a")
+}
+[✔️] graphicoder> db.find().pretty();
+TypeError: db.find is not a function
+[✔️] graphicoder> db.extrass.find().pretty()
+[
+  {
+    _id: ObjectId("64e2f987287409b00fdcbb0a"),
+    name: 'Ravi',
+    lastUpdated: ISODate("2023-08-21T05:43:35.733Z")
+  }
+]
+[✔️] graphicoder> db.extrass.updateOne({name:"Ravi"},{$currentDate: {lastUpdated: true}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.extrass.find().pretty()
+[
+  {
+    _id: ObjectId("64e2f987287409b00fdcbb0a"),
+    name: 'Ravi',
+    lastUpdated: ISODate("2023-08-21T05:45:18.717Z")
+  }
+]
+[✔️] graphicoder> db.extrass.updateOne({name:"Ravi"},{$currentDate: {lastUpdated: true}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.extrass.find().pretty()
+[
+  {
+    _id: ObjectId("64e2f987287409b00fdcbb0a"),
+    name: 'Ravi',
+    lastUpdated: ISODate("2023-08-21T05:54:49.853Z")
+  }
+]
+[✔️] graphicoder> db.extrass.updateOne({name:"Ravi"},{$currentDate: {lastUpdated: {$type: "timestamp"}}});
+
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.extrass.find().pretty()
+[
+  {
+    _id: ObjectId("64e2f987287409b00fdcbb0a"),
+    name: 'Ravi',
+    lastUpdated: Timestamp({ t: 1692597568, i: 1 })
+  }
+]
+[✔️] graphicoder> db.extrass.updateOne({name:"Ravi"},{$currentDate: {lastUpdated: {$type: "date"}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.extrass.find().pretty()
+[
+  {
+    _id: ObjectId("64e2f987287409b00fdcbb0a"),
+    name: 'Ravi',
+    lastUpdated: ISODate("2023-08-21T05:59:52.475Z")
+  }
+]
+[✔️] graphicoder>

@@ -1,0 +1,15 @@
+[✔️] graphicoder> db.customers.find().pretty();
+[ { _id: ObjectId("64e30170287409b00fdcbb0b"), name: 'Google' } ]
+graphicoder> db.customers.updateOne({}, {$rename: {"name":"CustomerName"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.customers.find().pretty();
+[
+  { _id: ObjectId("64e30170287409b00fdcbb0b"), CustomerName: 'Google' }
+]
+[✔️] graphicoder>

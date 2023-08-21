@@ -1,0 +1,60 @@
+[✔️] graphicoder> db.customers.insertOne({CustomerName: 'Ravi', productsInCart: [{productName: "Pen", price: 10, quantity: 2}, {productName: "Notebook", price: 20, quantity: 4}]});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64e30dd6287409b00fdcbb0f")
+}
+[✔️] graphicoder> db.customers.find().pretty();
+[
+  { _id: ObjectId("64e30170287409b00fdcbb0b"), CustomerName: 'Google' },
+  {
+    _id: ObjectId("64e30dd6287409b00fdcbb0f"),
+    CustomerName: 'Ravi',
+    productsInCart: [
+      { productName: 'Pen', price: 10, quantity: 2 },
+      { productName: 'Notebook', price: 20, quantity: 4 }
+    ]
+  }
+]
+
+
+[✔️] graphicoder> db.customers.updateOne({CustomerName: 'Ravi'}, {$inc: {"productsInCart.1.quantity": +1}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.customers.find().pretty();
+[
+  { _id: ObjectId("64e30170287409b00fdcbb0b"), CustomerName: 'Google' },
+  {
+    _id: ObjectId("64e30dd6287409b00fdcbb0f"),
+    CustomerName: 'Ravi',
+    productsInCart: [
+      { productName: 'Pen', price: 10, quantity: 2 },
+      { productName: 'Notebook', price: 20, quantity: 5 }
+    ]
+  }
+]
+[✔️] graphicoder> db.customers.updateOne({CustomerName: 'Ravi'}, {$inc: {"productsInCart.0.quantity": +4}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.customers.find().pretty();
+[
+  { _id: ObjectId("64e30170287409b00fdcbb0b"), CustomerName: 'Google' },
+  {
+    _id: ObjectId("64e30dd6287409b00fdcbb0f"),
+    CustomerName: 'Ravi',
+    productsInCart: [
+      { productName: 'Pen', price: 10, quantity: 6 },
+      { productName: 'Notebook', price: 20, quantity: 5 }
+    ]
+  }
+]
+[✔️] graphicoder>

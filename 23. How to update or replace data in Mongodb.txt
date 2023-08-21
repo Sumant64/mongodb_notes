@@ -1,0 +1,92 @@
+[✔️] graphicoder> db.playSchool.find().pretty()
+[
+  {
+    _id: ObjectId("64c79b04150b3cd6e8713ab8"),
+    class: 10,
+    name: 'Arjun',
+    science: null
+  },
+  { _id: ObjectId("64c79b04150b3cd6e8713ab9"), class: 10, name: 'Ram' },
+  {
+    _id: ObjectId("64c79b04150b3cd6e8713aba"),
+    class: 10,
+    name: 'Ajay',
+    science: null
+  }
+]
+[✔️] graphicoder> db.playSchool.updateOnce({"name":"Arjun"},{$set: {"name":"Gaurav"}});
+TypeError: db.playSchool.updateOnce is not a function
+[✔️] graphicoder> db.playSchool.updateOne({"name":"Arjun"},{$set: {"name":"Gaurav"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.playSchool.find().pretty()
+[
+  {
+    _id: ObjectId("64c79b04150b3cd6e8713ab8"),
+    class: 10,
+    name: 'Gaurav',
+    science: null
+  },
+  { _id: ObjectId("64c79b04150b3cd6e8713ab9"), class: 10, name: 'Ram' },
+  {
+    _id: ObjectId("64c79b04150b3cd6e8713aba"),
+    class: 10,
+    name: 'Ajay',
+    science: null
+  }
+]
+[✔️] graphicoder> db.playSchool.updateMany({"class":10}, {$set: {"class": 11}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.playSchool.find().pretty()
+[
+  {
+    _id: ObjectId("64c79b04150b3cd6e8713ab8"),
+    class: 11,
+    name: 'Gaurav',
+    science: null
+  },
+  { _id: ObjectId("64c79b04150b3cd6e8713ab9"), class: 11, name: 'Ram' },
+  {
+    _id: ObjectId("64c79b04150b3cd6e8713aba"),
+    class: 11,
+    name: 'Ajay',
+    science: null
+  }
+]
+[✔️] graphicoder> db.playSchool.replaceOne({"name":"Gaurav"},{"name":"Chetan", "class":11, "science": nul
+null});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.playSchool.find().pretty()
+[
+  {
+    _id: ObjectId("64c79b04150b3cd6e8713ab8"),
+    name: 'Chetan',
+    class: 11,
+    science: null
+  },
+  { _id: ObjectId("64c79b04150b3cd6e8713ab9"), class: 11, name: 'Ram' },
+  {
+    _id: ObjectId("64c79b04150b3cd6e8713aba"),
+    class: 11,
+    name: 'Ajay',
+    science: null
+  }
+]
+graphicoder>

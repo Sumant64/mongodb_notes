@@ -1,0 +1,31 @@
+[✔️] graphicoder> db.customers.insertOne(
+... {name: "Google", productInCart: [{productName: "kurkure", price: 5}, {productName: "lays", price: 5}]}
+... );
+{
+  acknowledged: true,
+  insertedId: ObjectId("64e30170287409b00fdcbb0b")
+}
+
+[✔️] graphicoder> db.customers.find().pretty()
+[
+  {
+    _id: ObjectId("64e30170287409b00fdcbb0b"),
+    name: 'Google',
+    productInCart: [
+      { productName: 'kurkure', price: 5 },
+      { productName: 'lays', price: 5 }
+    ]
+  }
+]
+
+
+[✔️] graphicoder> db.customers.updateOne({}, {$unset: {productInCart: ""}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.customers.find().pretty()
+[ { _id: ObjectId("64e30170287409b00fdcbb0b"), name: 'Google' } ]

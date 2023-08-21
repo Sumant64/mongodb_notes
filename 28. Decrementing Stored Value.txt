@@ -1,0 +1,26 @@
+[✔️] graphicoder> db.bankAccounts.find().pretty()
+[
+  {
+    _id: ObjectId("64e30b07287409b00fdcbb0e"),
+    name: 'Graphicoder',
+    amount: 15000
+  }
+]
+[✔️] graphicoder> db.bankAccounts.updateOne({"name":"Graphicoder"},{$inc:{"amount":-3000}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.bankAccounts.find().pretty()
+[
+  {
+    _id: ObjectId("64e30b07287409b00fdcbb0e"),
+    name: 'Graphicoder',
+    amount: 12000
+  }
+]
+graphicoder>
+
