@@ -1,0 +1,158 @@
+[✔️] graphicoder> db.studentsMathmarks.insertMany({"name": "Abhi", "marks": 32},
+... {"name": "Graphicoder", "marks": 72},
+... {"name": "kumar", "marks": 86});
+MongoInvalidArgumentError: Argument "docs" must be an array of documents
+[✔️] graphicoder> db.studentsMathmarks.insertMany([{ "name": "Abhi", "marks": 32 }, { "name": "Graphicoder", "marks": 72 }, { "name": "kumar", "marks": 86 }]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("64e448c4d5b003f60800d14b"),
+    '1': ObjectId("64e448c4d5b003f60800d14c"),
+    '2': ObjectId("64e448c4d5b003f60800d14d")
+  }
+}
+[✔️] graphicoder> db.studentsMathmarks.find().pretty();
+[
+  {
+    _id: ObjectId("64e448c4d5b003f60800d14b"),
+    name: 'Abhi',
+    marks: 32
+  },
+  {
+    _id: ObjectId("64e448c4d5b003f60800d14c"),
+    name: 'Graphicoder',
+    marks: 72
+  },
+  {
+    _id: ObjectId("64e448c4d5b003f60800d14d"),
+    name: 'kumar',
+    marks: 86
+  }
+]
+
+[📝] this query will find the name "Graphicoder" and then only update the marks of this document when it is greater than 72(i.e. his previous marks)
+[✔️] graphicoder> db.studentsMathmarks.updateOne({"name":"Graphicoder"}, {$max: {
+marks: 70}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.studentsMathmarks.find().pretty();
+[
+  {
+    _id: ObjectId("64e448c4d5b003f60800d14b"),
+    name: 'Abhi',
+    marks: 32
+  },
+  {
+    _id: ObjectId("64e448c4d5b003f60800d14c"),
+    name: 'Graphicoder',
+    marks: 72
+  },
+  {
+    _id: ObjectId("64e448c4d5b003f60800d14d"),
+    name: 'kumar',
+    marks: 86
+  }
+]
+[✔️] graphicoder> db.studentsMathmarks.updateOne({"name":"Graphicoder"}, {$max: {marks: 88}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.studentsMathmarks.find().pretty();
+[
+  {
+    _id: ObjectId("64e448c4d5b003f60800d14b"),
+    name: 'Abhi',
+    marks: 32
+  },
+  {
+    _id: ObjectId("64e448c4d5b003f60800d14c"),
+    name: 'Graphicoder',
+    marks: 88
+  },
+  {
+    _id: ObjectId("64e448c4d5b003f60800d14d"),
+    name: 'kumar',
+    marks: 86
+  }
+]
+----------------------------------------------------
+
+[✔️] graphicoder> db.execTimes.insertMany([
+... {name: "p1", execTime: 0.002},
+... {name: "p2", execTime: 0.0015}
+... ]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("64e44a6cd5b003f60800d14e"),
+    '1': ObjectId("64e44a6cd5b003f60800d14f")
+  }
+}
+[✔️] graphicoder> db.execTimes.find().pretty();
+[
+  {
+    _id: ObjectId("64e44a6cd5b003f60800d14e"),
+    name: 'p1',
+    execTime: 0.002
+  },
+  {
+    _id: ObjectId("64e44a6cd5b003f60800d14f"),
+    name: 'p2',
+    execTime: 0.0015
+  }
+]
+
+[📝] this query will find the name "p1" and update execTime if the current given time is less than the time already present in that field..
+[✔️] graphicoder> db.execTimes.updateOne({name: "p1"}, {$min: {execTime: 0.001}})
+;
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.execTimes.find().pretty();
+[
+  {
+    _id: ObjectId("64e44a6cd5b003f60800d14e"),
+    name: 'p1',
+    execTime: 0.001
+  },
+  {
+    _id: ObjectId("64e44a6cd5b003f60800d14f"),
+    name: 'p2',
+    execTime: 0.0015
+  }
+]
+[✔️] graphicoder> db.execTimes.updateOne({name: "p2"}, {$min: {execTime: 0.0018}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.execTimes.find().pretty();
+[
+  {
+    _id: ObjectId("64e44a6cd5b003f60800d14e"),
+    name: 'p1',
+    execTime: 0.001
+  },
+  {
+    _id: ObjectId("64e44a6cd5b003f60800d14f"),
+    name: 'p2',
+    execTime: 0.0015
+  }
+]
+[✔️] graphicoder>

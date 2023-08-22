@@ -1,0 +1,47 @@
+[✔️] graphicoder> db.toppers.insertOne({t_students: [ {grades: 90, ews: true}, {grades: 99, ews: false}, {grades: 95, ews: tr
+true}]});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64e45f49a9ec42c0035ce07e")
+}
+[✔️] graphicoder> db.toppers.find().pretty();
+[
+  {
+    _id: ObjectId("64e45f49a9ec42c0035ce07e"),
+    t_students: [
+      { grades: 90, ews: true },
+      { grades: 99, ews: false },
+      { grades: 95, ews: true }
+    ]
+  }
+]
+[✔️] graphicoder> db.toppers.updateMany({}, {$set: {t_students.$[].uniforms_free: true}});
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:44)
+
+> 1 | db.toppers.updateMany({}, {$set: {t_students.$[].uniforms_free: true}});
+    |                                             ^
+  2 |
+
+[📝] this query will add one more field in the t_students array as uniforms_free.. "t_students.$[]" has "$[]"
+will find the index within the array.
+[✔️] graphicoder> db.toppers.updateMany({}, {$set: {"t_students.$[].uniforms_free": true}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.toppers.find().pretty();
+[
+  {
+    _id: ObjectId("64e45f49a9ec42c0035ce07e"),
+    t_students: [
+      { grades: 90, ews: true, uniforms_free: true },
+      { grades: 99, ews: false, uniforms_free: true },
+      { grades: 95, ews: true, uniforms_free: true }
+    ]
+  }
+]
+[✔️] graphicoder>

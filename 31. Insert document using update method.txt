@@ -1,0 +1,27 @@
+[✔️] graphicoder> db.names.insertOne({name: "Abhi"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64e44dd9d5b003f60800d150")
+}
+[✔️] graphicoder> db.names.find().pretty();
+[ { _id: ObjectId("64e44dd9d5b003f60800d150"), name: 'Abhi' } ]
+
+[📝] this query will check whether the name "Graphicoder" is there in the 
+collection, if it is not there then "setOnInsert" operator will 
+insert the Graphicoder in db. and the "upsert" property will allow to 
+insert new document with the update query.
+[✔️] graphicoder> db.names.updateOne({name: "Graphicoder"},
+... {$setOnInsert: {name: "Graphicoder"}}, {upsert:true});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64e44e9068d4e6b0513f52af"),
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 1
+}
+[✔️] graphicoder> db.names.find().pretty();
+[
+  { _id: ObjectId("64e44dd9d5b003f60800d150"), name: 'Abhi' },
+  { _id: ObjectId("64e44e9068d4e6b0513f52af"), name: 'Graphicoder' }
+]
+[✔️] graphicoder>

@@ -1,0 +1,39 @@
+[📝] Notes:
+-----------
+o The mul operator multiply the give field value..
+o it has some rules..:
+    o if it is 32 bit integer and the result of the multiplied operator is 
+    coming out of the range of 32 bit then it changes to 64 bit operator.
+    o if the integer is 64 bit and the multiplied number is out of range 
+    of it, then it will give error.
+    o if the number is 32 bit or 64 bit integer and we are multiplying 
+    it with float value then it changess to float value.
+
+
+---------------
+
+[✔️] graphicoder> db.bankAccounts.find().pretty()
+[
+  {
+    _id: ObjectId("64e30b07287409b00fdcbb0e"),
+    name: 'Graphicoder',
+    amount: 12000
+  }
+]
+[✔️] graphicoder> db.bankAccounts.updateOne({name: "Graphicoder"}, {$mul: {amount:2}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.bankAccounts.find().pretty()
+[
+  {
+    _id: ObjectId("64e30b07287409b00fdcbb0e"),
+    name: 'Graphicoder',
+    amount: 24000
+  }
+]
+[✔️] graphicoder>

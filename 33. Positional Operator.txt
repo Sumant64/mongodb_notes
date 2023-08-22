@@ -1,0 +1,50 @@
+[📝] Notes:
+-----------
+o We have inserted the labs in school in db and in start we have given 
+the lab as serial number. But we want that the labs as a name.. 
+so We will set the definite lab no. as a named one.
+------------
+
+
+[✔️] graphicoder> db.school.insertOne(
+... {"labs":[1, 4, 3]}
+... );
+{
+  acknowledged: true,
+  insertedId: ObjectId("64e45785a9ec42c0035ce07d")
+}
+[✔️] graphicoder> db.school.find().pretty();
+[ { _id: ObjectId("64e45785a9ec42c0035ce07d"), labs: [ 1, 4, 3 ] } ]
+
+[📝] this query will find the labs no 4. and then "$set" operator will set the new value.. "labs.$" is used to set labs no. 4 value as "Computer Science"
+[✔️] graphicoder> db.school.updateOne({labs:4}, {$set: {"labs.$": "Computer Science"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.school.find().pretty();
+[
+  {
+    _id: ObjectId("64e45785a9ec42c0035ce07d"),
+    labs: [ 1, 'Computer Science', 3 ]
+  }
+]
+[✔️] graphicoder> db.school.updateOne({labs:1}, {$set: {"labs.$": "Chemistry"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.school.find().pretty();
+[
+  {
+    _id: ObjectId("64e45785a9ec42c0035ce07d"),
+    labs: [ 'Chemistry', 'Computer Schience', 3 ]
+  }
+]
+[✔️] graphicoder>
