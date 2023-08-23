@@ -1,6 +1,6 @@
-test> use graphicoder
+[➕] test> use graphicoder
 switched to db graphicoder
-graphicoder> show dbs
+[➕] graphicoder> show dbs
 admin               40.00 KiB
 config              60.00 KiB
 import              72.00 KiB

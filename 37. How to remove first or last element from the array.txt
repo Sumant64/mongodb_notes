@@ -1,0 +1,48 @@
+[✔️] graphicoder> db.plate.insertMany([
+... {"plates": ["Plate1", "Plate2", "Plate3", "Plate4", "Plate5", "Plate6"]}
+... ]);
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("64e5b3701771d1c95ad66184") }
+}
+[✔️] graphicoder> db.plate.find().pretty();
+[
+  {
+    _id: ObjectId("64e5b3701771d1c95ad66184"),
+    plates: [ 'Plate1', 'Plate2', 'Plate3', 'Plate4', 'Plate5', 'Plate6' ]
+  }
+]
+
+[📝] {$pop: {plates: -1}}--> here "1" means it will pop from the first
+[✔️] graphicoder> db.plate.updateOne({}, {$pop: {plates: -1}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.plate.find().pretty();
+[
+  {
+    _id: ObjectId("64e5b3701771d1c95ad66184"),
+    plates: [ 'Plate2', 'Plate3', 'Plate4', 'Plate5', 'Plate6' ]
+  }
+]
+
+[📝] {$pop: {plates: 1}}--> here "1" means it will pop from the last
+[✔️] graphicoder> db.plate.updateOne({}, {$pop: {plates: 1}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.plate.find().pretty();
+[
+  {
+    _id: ObjectId("64e5b3701771d1c95ad66184"),
+    plates: [ 'Plate2', 'Plate3', 'Plate4', 'Plate5' ]
+  }
+]

@@ -1,0 +1,38 @@
+[✔️] graphicoder> db.toppers.find().pretty();
+[
+  {
+    _id: ObjectId("64e45f49a9ec42c0035ce07e"),
+    t_students: [
+      { grades: 90, ews: true, uniforms_free: true },
+      { grades: 99, ews: false, uniforms_free: true },
+      { grades: 95, ews: true, uniforms_free: true }
+    ]
+  }
+]
+
+[📝] we are filtering the elements whose grades are greater than 95 and "economically weaker section (ews)" is true and then in that document we update canteen_free: true
+[✔️] graphicoder> db.toppers.updateMany({}, {$set: {"t_students.$[element].canteen_free": true}}, {arrayFilters: [{"element.g
+rades": {$gte: 95}, "element.ews":true}]});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.toppers.find().pretty();
+[
+  {
+    _id: ObjectId("64e45f49a9ec42c0035ce07e"),
+    t_students: [
+      { grades: 90, ews: true, uniforms_free: true },
+      { grades: 99, ews: false, uniforms_free: true },
+      {
+        grades: 95,
+        ews: true,
+        uniforms_free: true,
+        canteen_free: true
+      }
+    ]
+  }
+]

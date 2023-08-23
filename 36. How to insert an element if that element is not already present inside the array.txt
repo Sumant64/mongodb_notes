@@ -1,0 +1,114 @@
+[✔️] graphicoder> db.interschool.insertMany([
+... {"sports_name": "Kabbadi", "players" : ["Ram", "Shyam", "Guru", "Uday", "Darsh"]}
+... ]);
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("64e5a1fe1771d1c95ad66183") }
+}
+[✔️] graphicoder> db.interschool.find().pretty();
+[
+  {
+    _id: ObjectId("64e5a1fe1771d1c95ad66183"),
+    sports_name: 'Kabbadi',
+    players: [ 'Ram', 'Shyam', 'Guru', 'Uday', 'Darsh' ]
+  }
+]
+
+[📝] addToSet operator see that whether Aakesh name is there in sports_name array, if not then it will insert or it will not.
+[✔️] graphicoder> db.interschool.updateOne({"sports_name": "Kabbadi"}, {$addToSet: {"players": "Aakesh"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.interschool.find().pretty();
+[
+  {
+    _id: ObjectId("64e5a1fe1771d1c95ad66183"),
+    sports_name: 'Kabbadi',
+    players: [ 'Ram', 'Shyam', 'Guru', 'Uday', 'Darsh', 'Aakesh' ]
+  }
+]
+[✔️] graphicoder> db.interschool.updateOne({"sports_name": "Kabbadi"}, {$addToSet: {"players": "Aakesh"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+
+[📝] each operator is used to insert many values inside the array, and when any of the value matches then it will not insert that specific value.
+[✔️] graphicoder>  db.interschool.updateOne({"sports_name": "Kabbadi"}, {$addToSet: {"players": {$each: ["Aakav","Aarav", "Advik", "Darpan", "Evak", "Ekansh"]}});
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:142)
+
+> 1 |  db.interschool.updateOne({"sports_name": "Kabbadi"}, {$addToSet: {"players": {$each: ["Aakav","Aarav", "Advik", "Darpan", "Evak", "Ekansh"]}});
+    |
+                                             ^
+  2 |
+
+[✔️] graphicoder>  db.interschool.updateOne({"sports_name": "Kabbadi"}, {$addToSet: {"players": {$each: ["Aakav","Aarav", "Advik", "Darpan", "Evak", "Ekansh"]}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.interschool.find().pretty();
+[
+  {
+    _id: ObjectId("64e5a1fe1771d1c95ad66183"),
+    sports_name: 'Kabbadi',
+    players: [
+      'Ram',   'Shyam',
+      'Guru',  'Uday',
+      'Darsh', 'Aakesh',
+      'Aakav', 'Aarav',
+      'Advik', 'Darpan',
+      'Evak',  'Ekansh'
+    ]
+  }
+]
+[✔️] graphicoder> db.interschool.find();
+[
+  {
+    _id: ObjectId("64e5a1fe1771d1c95ad66183"),
+    sports_name: 'Kabbadi',
+    players: [
+      'Ram',   'Shyam',
+      'Guru',  'Uday',
+      'Darsh', 'Aakesh',
+      'Aakav', 'Aarav',
+      'Advik', 'Darpan',
+      'Evak',  'Ekansh'
+    ]
+  }
+]
+[✔️] graphicoder>  db.interschool.updateOne({"sports_name": "Kabbadi"}, {$addToSet: {"players": {$each: ["Aakav","Aarav", "Advik", "Darpan", "Evak", "Ekansh", "Adarsh"]}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.interschool.find().pretty();
+[
+  {
+    _id: ObjectId("64e5a1fe1771d1c95ad66183"),
+    sports_name: 'Kabbadi',
+    players: [
+      'Ram',    'Shyam',
+      'Guru',   'Uday',
+      'Darsh',  'Aakesh',
+      'Aakav',  'Aarav',
+      'Advik',  'Darpan',
+      'Evak',   'Ekansh',
+      'Adarsh'
+    ]
+  }
+]
