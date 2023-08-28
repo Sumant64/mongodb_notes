@@ -1,0 +1,41 @@
+[📝] In this task, we are adding an array with push method, if array is not there then it will automatically create it.
+
+[✔️] graphicoder> db.annualFun.insertOne({"name": "Group Dance"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64ec42fc8797c0bf34f76864")
+}
+[✔️] graphicoder> db.annualFun.find().pretty();
+[ { _id: ObjectId("64ec42fc8797c0bf34f76864"), name: 'Group Dance' } ]
+[✔️] graphicoder> db.annualFun.updateOne({"name": "Group Dance"}, {$push: {"students": "Aditya"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.annualFun.find().pretty();
+[
+  {
+    _id: ObjectId("64ec42fc8797c0bf34f76864"),
+    name: 'Group Dance',
+    students: [ 'Aditya' ]
+  }
+]
+[✔️] graphicoder> db.annualFun.updateOne({"name": "Group Dance"}, {$push: {"students": "Rahul"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.annualFun.find().pretty();
+[
+  {
+    _id: ObjectId("64ec42fc8797c0bf34f76864"),
+    name: 'Group Dance',
+    students: [ 'Aditya', 'Rahul' ]
+  }
+]

@@ -1,0 +1,45 @@
+[📝] In this task, we can see that "Abhi" and "Rohan" has given their names twice which we will remove with pullAll operator.
+
+[✔️] graphicoder> db.annualFunction.insertOne({
+... "name": "Group Dance",
+... "students": ["Abhi", "Rohan", "Abhi", "Aditya", "Arjun", "Rohan"]
+... });
+{
+  acknowledged: true,
+  insertedId: ObjectId("64ec40818797c0bf34f76862")
+}
+[✔️] graphicoder> db.annualFunction.find().pretty();
+[
+  {
+    _id: ObjectId("64ec40818797c0bf34f76862"),
+    name: 'Group Dance',
+    students: [ 'Abhi', 'Rohan', 'Abhi', 'Aditya', 'Arjun', 'Rohan' ]
+  }
+]
+
+[📝] using pullAll operator.. just we need to give all the values of the array which we need to remove.
+[✔️] graphicoder> db.annualFunction.updateOne({}, {$pullAll: {students: ["Abhi", "Rohan"]}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.annualFunction.find().pretty();
+[
+  {
+    _id: ObjectId("64ec40818797c0bf34f76862"),
+    name: 'Group Dance',
+    students: [ 'Aditya', 'Arjun' ]
+  }
+]
+[📝] using pull operator we need to write the query like this.
+[✔️] graphicoder> db.annualFunction.updateOne({}, {$pull: {students: {$in: ["Abhi", "Rohan"]}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 0,
+  upsertedCount: 0
+}

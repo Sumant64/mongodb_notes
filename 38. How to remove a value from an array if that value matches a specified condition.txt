@@ -1,0 +1,77 @@
+[✔️] graphicoder> db.itemsList.insertOne({
+... vegetables: ["Carrots", "Potatoes", "Cabbage", "Onions"],
+... cleaningItems: ["Detergent", "mop"],
+... fastFood: [{"name": "Burger", "price": 30}, {"name" : "Chow Mein", "price": 80}]
+... });
+{
+  acknowledged: true,
+  insertedId: ObjectId("64ec37da8797c0bf34f76861")
+}
+[✔️] graphicoder> db.itemsList.find().pretty();
+[
+  {
+    _id: ObjectId("64ec37da8797c0bf34f76861"),
+    vegetables: [ 'Carrots', 'Potatoes', 'Cabbage', 'Onions' ],
+    cleaningItems: [ 'Detergent', 'mop' ],
+    fastFood: [ { name: 'Burger', price: 30 }, { name: 'Chow Mein', price: 80 } ]
+  }
+]
+
+[📝] pull operator locate the specified array and get the elements documents by documents...
+    In this query it will find the carrots value from array vegetables and delete it.
+[✔️] graphicoder> db.itemsList.updateOne({}, {$pull: { "vegetables": "Carrots"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.itemsList.find().pretty();
+[
+  {
+    _id: ObjectId("64ec37da8797c0bf34f76861"),
+    vegetables: [ 'Potatoes', 'Cabbage', 'Onions' ],
+    cleaningItems: [ 'Detergent', 'mop' ],
+    fastFood: [ { name: 'Burger', price: 30 }, { name: 'Chow Mein', price: 80 } ]
+  }
+]
+
+[📝] In this query the pull operator we are giving cleaningItems as array name, and in operator will 
+provide first the Detergent value document if exist and then the mop value doc.
+[✔️] graphicoder> db.itemsList.updateOne({}, {$pull: {cleaningItems: {$in: ["Detergent", "mop"]}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.itemsList.find().pretty();
+[
+  {
+    _id: ObjectId("64ec37da8797c0bf34f76861"),
+    vegetables: [ 'Potatoes', 'Cabbage', 'Onions' ],
+    cleaningItems: [],
+    fastFood: [ { name: 'Burger', price: 30 }, { name: 'Chow Mein', price: 80 } ]
+  }
+]
+
+[📝] Here the fastFood array was having objects as index, there passed the particular object need to be removed.
+[✔️] graphicoder> db.itemsList.updateOne({}, {$pull: {fastFood: {name: "Burger", price: 30}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.itemsList.find().pretty();
+[
+  {
+    _id: ObjectId("64ec37da8797c0bf34f76861"),
+    vegetables: [ 'Potatoes', 'Cabbage', 'Onions' ],
+    cleaningItems: [],
+    fastFood: [ { name: 'Chow Mein', price: 80 } ]
+  }
+]
