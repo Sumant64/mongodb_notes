@@ -1,0 +1,26 @@
+[✔️] graphicoder> db.demo.insertOne({"myArray": [0, 1, 2, 3, 4, 5, 6]});
+{
+  acknowledged: true,
+  insertedId: ObjectId("6511a0df78713e5c7a348d9a")
+}
+[✔️] graphicoder> db.demo.find().pretty();
+[
+  {
+    _id: ObjectId("6511a0df78713e5c7a348d9a"),
+    myArray: [
+      0, 1, 2, 3,
+      4, 5, 6
+    ]
+  }
+]
+[✔️] graphicoder> db.demo.updateOne({}, {$set: {myArray: []}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.demo.find().pretty();
+[ { _id: ObjectId("6511a0df78713e5c7a348d9a"), myArray: [] } ]
+graphicoder>

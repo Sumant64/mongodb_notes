@@ -1,0 +1,52 @@
+[✔️] graphicoder> db.assemblyline.find().pretty();
+[
+  {
+    _id: ObjectId("651198d078713e5c7a348d98"),
+    students: [ 'Ajay', 'Aman' ]
+  }
+]
+[✔️] graphicoder> db.assemblyline.updateOne({}, {$push: {students: {$each: ["Graphicoder", "Abhi", "Arun", "Ram"]}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.assemblyline.find().pretty();
+[
+  {
+    _id: ObjectId("651198d078713e5c7a348d98"),
+    students: [ 'Ajay', 'Aman', 'Graphicoder', 'Abhi', 'Arun', 'Ram' ]
+  }
+]
+[✔️] graphicoder> db.assemblyline.updateOne({}, {$push: {students: {$each: [], $sort: 1}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.assemblyline.find().pretty();
+[
+  {
+    _id: ObjectId("651198d078713e5c7a348d98"),
+    students: [ 'Abhi', 'Ajay', 'Aman', 'Arun', 'Graphicoder', 'Ram' ]
+  }
+]
+[✔️] graphicoder> db.assemblyline.updateOne({}, {$push: {students: {$each: [], $sort: -1}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.assemblyline.find().pretty();
+[
+  {
+    _id: ObjectId("651198d078713e5c7a348d98"),
+    students: [ 'Ram', 'Graphicoder', 'Arun', 'Aman', 'Ajay', 'Abhi' ]
+  }
+]

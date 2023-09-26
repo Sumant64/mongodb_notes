@@ -1,0 +1,40 @@
+[✔️] graphicoder> db.extras.insertOne({demoData: ["Abhi"]});
+{
+  acknowledged: true,
+  insertedId: ObjectId("6511964478713e5c7a348d97")
+}
+[✔️] graphicoder> db.extras.find().pretty();
+[ { _id: ObjectId("6511964478713e5c7a348d97"), demoData: [ 'Abhi' ] } ]
+[✔️] graphicoder> db.extras.updateOne({}, {$push: {demoData: "Abhi"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.extras.find().pretty();
+[
+  {
+    _id: ObjectId("6511964478713e5c7a348d97"),
+    demoData: [ 'Abhi', 'Abhi' ]
+  }
+]
+
+[📝] Note:- addToSet operator will add the values only when it is unique. but push operator will simply add the value.
+[✔️] graphicoder> db.extras.updateOne({}, {$addToSet: {demoData: "Abhi"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.extras.find().pretty();
+[
+  {
+    _id: ObjectId("6511964478713e5c7a348d97"),
+    demoData: [ 'Abhi', 'Abhi' ]
+  }
+]
+graphicoder>

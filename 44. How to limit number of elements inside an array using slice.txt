@@ -1,0 +1,61 @@
+[✔️] graphicoder> db.assemblyline.find().pretty();
+[
+  {
+    _id: ObjectId("651198d078713e5c7a348d98"),
+    students: [ 'Abhi', 'Arun', 'Graphicoder', 'Ajay', 'Ram' ]
+  }
+]
+
+[📝] Note:- (slice: 2) will take only first two element and remove all the other element of array
+[✔️] graphicoder> db.assemblyline.updateOne({}, {$push: {students: {$each: [], $slice: 2}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.assemblyline.find().pretty();
+[
+  {
+    _id: ObjectId("651198d078713e5c7a348d98"),
+    students: [ 'Abhi', 'Arun' ]
+  }
+]
+
+[📝] Note:-  here each operator will add the element and then (slice: 2) will take only first two element from the first
+thats why only "Abhi" and "Arun" are there.
+[✔️] graphicoder> db.assemblyline.updateOne({}, {$push: {students: {$each: ["Graphicoder", "Ajay", "Aman"], $slice: 2}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.assemblyline.find().pretty();
+[
+  {
+    _id: ObjectId("651198d078713e5c7a348d98"),
+    students: [ 'Abhi', 'Arun' ]
+  }
+]
+
+[📝] Note:-  here each operator will add the element and then (slice: -2) will take only last two element from the last
+thats why only "Ajay" and "Aman" are there.
+[✔️] graphicoder> db.assemblyline.updateOne({}, {$push: {students: {$each: ["Graphicoder", "Ajay", "Aman"], $slice: -2}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.assemblyline.find().pretty();
+[
+  {
+    _id: ObjectId("651198d078713e5c7a348d98"),
+    students: [ 'Ajay', 'Aman' ]
+  }
+]
+graphicoder>

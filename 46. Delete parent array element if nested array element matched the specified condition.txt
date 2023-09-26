@@ -1,0 +1,59 @@
+[✔️] graphicoder> db.classes.insertOne({
+... "class": "10 B",
+... "students": [
+... {
+... "studentName" : "Ram",
+... "subjects": [{"subjectName": "Maths", "marks": 90}]
+... },
+... {
+... "studentName" : "Aman",
+... "subjects" : [{"subjectName" : "Maths", "marks" : 80}, { "subjectName" : "Science", "marks" : 99}]
+... }
+... ]
+... });
+{
+  acknowledged: true,
+  insertedId: ObjectId("65119fc578713e5c7a348d99")
+}
+[✔️] graphicoder> db.classes.find().pretty();
+[
+  {
+    _id: ObjectId("65119fc578713e5c7a348d99"),
+    class: '10 B',
+    students: [
+      {
+        studentName: 'Ram',
+        subjects: [ { subjectName: 'Maths', marks: 90 } ]
+      },
+      {
+        studentName: 'Aman',
+        subjects: [
+          { subjectName: 'Maths', marks: 80 },
+          { subjectName: 'Science', marks: 99 }
+        ]
+      }
+    ]
+  }
+]
+[✔️] graphicoder> db.classes.updateOne({}, {$pull: {"students" : {"subjects" : {$elemMatch: {"subjectName": "Science"}}}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.classes.find().pretty();
+[
+  {
+    _id: ObjectId("65119fc578713e5c7a348d99"),
+    class: '10 B',
+    students: [
+      {
+        studentName: 'Ram',
+        subjects: [ { subjectName: 'Maths', marks: 90 } ]
+      }
+    ]
+  }
+]
+graphicoder>

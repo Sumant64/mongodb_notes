@@ -1,0 +1,110 @@
+[✔️] graphicoder> db.classes.insertOne({ "class": "10 B", "students": [ { "studentName": "Ram", "subjects": [{ "subjectName": "Maths", "marks": 90 }] }, { "studentName": "Aman", "subjects": [{ "subjectName": "Maths", "marks": 80 }, { "subjectName": "Science", "marks": 99 }] }] });
+{
+  acknowledged: true,
+  insertedId: ObjectId("6511a14e78713e5c7a348d9b")
+}
+[✔️] graphicoder> db.classes.find().pretty();
+[
+  {
+    _id: ObjectId("65119fc578713e5c7a348d99"),
+    class: '10 B',
+    students: [
+      {
+        studentName: 'Ram',
+        subjects: [ { subjectName: 'Maths', marks: 90 } ]
+      }
+    ]
+  },
+  {
+    _id: ObjectId("6511a14e78713e5c7a348d9b"),
+    class: '10 B',
+    students: [
+      {
+        studentName: 'Ram',
+        subjects: [ { subjectName: 'Maths', marks: 90 } ]
+      },
+      {
+        studentName: 'Aman',
+        subjects: [
+          { subjectName: 'Maths', marks: 80 },
+          { subjectName: 'Science', marks: 99 }
+        ]
+      }
+    ]
+  }
+]
+
+[📝] Note:- two doc are there and first doc does'nt have subject Science therefore it is not modified.
+[✔️] graphicoder> db.classes.updateOne({}, {$pull: {"students.$[].subjects": {"subjectName" : "Science"}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.classes.find().pretty();
+[
+  {
+    _id: ObjectId("65119fc578713e5c7a348d99"),
+    class: '10 B',
+    students: [
+      {
+        studentName: 'Ram',
+        subjects: [ { subjectName: 'Maths', marks: 90 } ]
+      }
+    ]
+  },
+  {
+    _id: ObjectId("6511a14e78713e5c7a348d9b"),
+    class: '10 B',
+    students: [
+      {
+        studentName: 'Ram',
+        subjects: [ { subjectName: 'Maths', marks: 90 } ]
+      },
+      {
+        studentName: 'Aman',
+        subjects: [
+          { subjectName: 'Maths', marks: 80 },
+          { subjectName: 'Science', marks: 99 }
+        ]
+      }
+    ]
+  }
+]
+[✔️] graphicoder> db.classes.updateMany({}, {$pull: {"students.$[].subjects": {"subjectName" : "Science"}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.classes.find().pretty();
+[
+  {
+    _id: ObjectId("65119fc578713e5c7a348d99"),
+    class: '10 B',
+    students: [
+      {
+        studentName: 'Ram',
+        subjects: [ { subjectName: 'Maths', marks: 90 } ]
+      }
+    ]
+  },
+  {
+    _id: ObjectId("6511a14e78713e5c7a348d9b"),
+    class: '10 B',
+    students: [
+      {
+        studentName: 'Ram',
+        subjects: [ { subjectName: 'Maths', marks: 90 } ]
+      },
+      {
+        studentName: 'Aman',
+        subjects: [ { subjectName: 'Maths', marks: 80 } ]
+      }
+    ]
+  }
+]

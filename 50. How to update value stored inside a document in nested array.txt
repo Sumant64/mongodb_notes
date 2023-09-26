@@ -1,0 +1,52 @@
+[✔️] graphicoder> db.classes.find().pretty()
+[
+  {
+    _id: ObjectId("6511a4b678713e5c7a348d9c"),
+    class: '10 B',
+    students: [
+      { studentName: 'Ram', subjects: [] },
+      {
+        studentName: 'Aman',
+        subjects: [
+          { subjectName: 'Maths', marks: 80 },
+          { subjectName: 'Science', marks: 99 }
+        ]
+      }
+    ]
+  }
+]
+[✔️] graphicoder> db.classes.updateOne({}, {$pull: { "students.[].studentName": "Ram"}});
+MongoServerError: Cannot use the part ([]) of (students.[].studentName) to traverse the element ({students: [ { studentName: "Ram", subjects: [] }, { studentName: "Aman", subjects: [ { subjectName: "Maths", marks: 80 }, { subjectName: "Science", marks: 99 } ] } ]})
+[✔️] graphicoder> db.classes.updateOne({classes: "10 B"}, {$set: {"students.$[elem].subjects.$[elem2].marks": 90}}, {arrayFilters: [{"elem.studentName": "Aman"}, {"elem2.subjectName": "Maths"}]});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.classes.updateOne({class: "10 B"}, {$set: {"students.$[elem].subjects.$[elem2].marks": 90}}, {arrayFilters: [{"elem.studentName": "Aman"}, {"elem2.subjectName": "Maths"}]});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.classes.find().pretty()
+[
+  {
+    _id: ObjectId("6511a4b678713e5c7a348d9c"),
+    class: '10 B',
+    students: [
+      { studentName: 'Ram', subjects: [] },
+      {
+        studentName: 'Aman',
+        subjects: [
+          { subjectName: 'Maths', marks: 90 },
+          { subjectName: 'Science', marks: 99 }
+        ]
+      }
+    ]
+  }
+]

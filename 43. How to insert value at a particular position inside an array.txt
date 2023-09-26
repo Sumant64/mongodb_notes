@@ -1,0 +1,46 @@
+[✔️] graphicoder> db.assemblyline.insertOne({"students": ["Abhi", "Graphicoder", "Ram"]});
+{
+  acknowledged: true,
+  insertedId: ObjectId("651198d078713e5c7a348d98")
+}
+[✔️] graphicoder> db.assemblyline.find().pretty();
+[
+  {
+    _id: ObjectId("651198d078713e5c7a348d98"),
+    students: [ 'Abhi', 'Graphicoder', 'Ram' ]
+  }
+]
+
+[📝] Note:- position operator will insert the value at the specific position of the array. 1 means it will insert the value
+"Arun" at index 1.
+[✔️] graphicoder> db.assemblyline.updateOne({}, {$push: {"students": {$each: ["Arun"], $position:1 }}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.assemblyline.find().pretty();
+[
+  {
+    _id: ObjectId("651198d078713e5c7a348d98"),
+    students: [ 'Abhi', 'Arun', 'Graphicoder', 'Ram' ]
+  }
+]
+[📝] Note:- -1 means it will insert the value "Ajay" from last before "Ram"
+[✔️] graphicoder> db.assemblyline.updateOne({}, {$push: {"students": {$each: ["Ajay"], $position:-1 }}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.assemblyline.find().pretty();
+[
+  {
+    _id: ObjectId("651198d078713e5c7a348d98"),
+    students: [ 'Abhi', 'Arun', 'Graphicoder', 'Ajay', 'Ram' ]
+  }
+]

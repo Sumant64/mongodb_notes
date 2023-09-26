@@ -1,0 +1,26 @@
+[✔️] graphicoder> db.extras.find().pretty()
+[
+  {
+    _id: ObjectId("6511964478713e5c7a348d97"),
+    demoData: [ 'Abhi', 'Abhi' ]
+  }
+]
+
+[📝] Note:- each operator can be used with addToSet and traverse element by element. First 
+it goes to "Graphicoder" and then if it unique then enter the element and then to "Ram"
+[✔️] graphicoder> db.extras.updateOne({}, {$addToSet: {demoData: {$each: ["Graphicoder", "Ram"]}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+[✔️] graphicoder> db.extras.find().pretty()
+[
+  {
+    _id: ObjectId("6511964478713e5c7a348d97"),
+    demoData: [ 'Abhi', 'Abhi', 'Graphicoder', 'Ram' ]
+  }
+]
+graphicoder>
