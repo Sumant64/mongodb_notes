@@ -1,0 +1,23 @@
+[✔️] graphicoder> db.users.find().pretty();
+[
+  {
+    _id: ObjectId("6512bd6b129210978c5921ba"),
+    name: 'Java',
+    age: 18,
+    Location: 'New Delhi'
+  },
+  {
+    _id: ObjectId("6512bd6b129210978c5921bb"),
+    name: 'Dart',
+    age: 10,
+    Location: 'Mumbai'
+  }
+]
+[✔️] graphicoder> db.users.count();
+DeprecationWarning: Collection.count() is deprecated. Use countDocuments or estimatedDocumentCount.
+2
+[✔️] graphicoder> db.users.countDocuments();
+2
+[✔️] graphicoder> db.users.estimatedDocumentCount();
+2
+[✔️] graphicoder>

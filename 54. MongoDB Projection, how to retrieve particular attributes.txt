@@ -1,0 +1,30 @@
+[✔️] graphicoder> db.users.insertMany([{"name": "Java", "age": 18, "Location": "New Delhi"}, {"name": "Dart", "age": 10, "Location": "Mumbai"}]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("6512bd6b129210978c5921ba"),
+    '1': ObjectId("6512bd6b129210978c5921bb")
+  }
+}
+[✔️] graphicoder> db.users.find({}, {age: 1});
+[
+  { _id: ObjectId("6512bd6b129210978c5921ba"), age: 18 },
+  { _id: ObjectId("6512bd6b129210978c5921bb"), age: 10 }
+]
+[✔️] graphicoder> db.users.find({}, {age: 1, _id: 0});
+[ { age: 18 }, { age: 10 } ]
+
+[✔️] graphicoder> db.users.find({}, {age: 0})
+[
+  {
+    _id: ObjectId("6512bd6b129210978c5921ba"),
+    name: 'Java',
+    Location: 'New Delhi'
+  },
+  {
+    _id: ObjectId("6512bd6b129210978c5921bb"),
+    name: 'Dart',
+    Location: 'Mumbai'
+  }
+]
+[✔️] graphicoder>

@@ -1,0 +1,33 @@
+[✔️] graphicoder> db.createCollection("Rack4");
+{ ok: 1 }
+[✔️] graphicoder> db.showCollections();
+TypeError: db.showCollections is not a function
+[✔️] graphicoder> show collections
+abcdBank
+annualFun
+annualFunction
+assemblyline
+bankAccounts
+classes
+customers
+demo
+execTimes
+extras
+extrass
+interschool
+itemsList
+names
+Pens
+plate
+playSchool
+Rack4
+regexDemo
+school
+studentDetails
+studentsMathmarks
+toppers
+tShirtShop
+UnorderedExample
+[✔️] graphicoder> db.Rack4.find().pretty();
+
+[✔️] graphicoder>

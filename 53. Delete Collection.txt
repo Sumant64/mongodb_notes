@@ -1,0 +1,30 @@
+[✔️] graphicoder> db.Rack4.find().pretty();
+
+[✔️] graphicoder> db.Rack4.drop();
+true
+[✔️] graphicoder> show collections
+abcdBank
+annualFun
+annualFunction
+assemblyline
+bankAccounts
+classes
+customers
+demo
+execTimes
+extras
+extrass
+interschool
+itemsList
+names
+Pens
+plate
+playSchool
+regexDemo
+school
+studentDetails
+studentsMathmarks
+toppers
+tShirtShop
+UnorderedExample
+[✔️] graphicoder>
